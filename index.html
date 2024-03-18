@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>Happi happi happi </h1>
+    <!-- <input type="text" id="roomNo" />
+    <button id="join">JOIN</button> -->
+</body>
+<script>
+    const roomNo = document.getElementById('roomNo');
+    // const socket = io();
+    // socket.on('start', (data) => {
+    //     h1 = document.querySelector('h1');
+    //     h1.innerHTML = data.client;
+    //     console.log(data)
+    // });
+    // socket.on('message', (data) => {
+    //     console.log(data);
+    // }); 
+    // socket.emit('chat', {client: 'client'});
+    // socket.on('chat', (data) => {
+    //     console.log(data);
+    // });
+    // socket.on('newuser',(data)=>{
+    //     h1 = document.querySelector('h1');
+    //     h1.innerHTML = data.msg;
+    // })
+    // const socket = io('/namespace');
+    // socket.on('chat', (data) => {
+    //     h1 = document.querySelector('h1');
+    //     h1.innerHTML = data.msg;
+    // });
+    const socket = io();
+    // document.getElementById('join').addEventListener('click', () => {
+    //     socket.emit('join', {room: roomNo.value});
+    //     roomNo.value = '';
+    // });
+    // socket.on('chat', (data) => {
+    //     h1 = document.querySelector('h1');
+    //     h1.innerHTML = data.msg;
+    // });
+    socket.on('connect_failed', () => {
+        alert('Connection failed');
+    });
+    socket.on('reconnecting', ()=>{
+        alert('Reconnecting');
+    });
+    socket.on('reconnect_failed', ()=>{
+        alert('Reconnect failed');
+    });
+    socket.on('error', (error) => {
+        alert('Socket error:', error);
+    });
+    socket.on("connect_error", (err) => {
+        console.log(err.message);
+        console.log(err.description);
+        console.log(err.context);
+    });
+</script>
+</html>

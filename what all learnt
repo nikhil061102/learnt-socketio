@@ -1,0 +1,8 @@
+1. server side events : connection, disconnection, message, ping, join and leave
+2. custom event create on server side and caught in client side 
+3. custom event create on client side and caught in server side 
+4. broadcasting (including custom broadcasting for new user)
+5. namespaces in socket.io
+6. create channel (or room)
+7. error handling 
+8. Two servers

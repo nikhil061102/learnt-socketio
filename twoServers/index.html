@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>Two servers </h1>
+    <button id="server8000">Toggle :8000 server</button>
+    <button id="server8005">Toggle :8005 server</button>
+    <p id="serverStatus"></p>
+</body>
+<script>
+    const socket8000 = io('http://localhost:8000');
+    const socket8005 = io('http://localhost:8005');
+    document.getElementById('server8000').onclick = () => {
+        socket8000.emit('toggleServer', {msg: "server on port 8000 hit"});
+    }
+    document.getElementById('server8005').onclick = () => {
+        socket8005.emit('toggleServer', {msg: "server on port 8005 hit"});
+    }
+    socket8000.on('toggleClient', (data) => {
+        document.getElementById('serverStatus').innerText = data.msg+" and this is revert from backend";
+    });
+    socket8005.on('toggleClient', (data) => {
+        document.getElementById('serverStatus').innerText = data.msg+" and this is revert from backend";
+    });
+</script>
+</html>
